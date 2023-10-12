@@ -25,7 +25,7 @@ public class Village {
 		private int trouverEtalLibre() {
 			for (int i=0; i<etals.length; i++) {
 				if (!etals[i].isEtalOccupe()) {
-					return i+1;
+					return i;
 				}
 			}
 			return -1;
@@ -69,7 +69,7 @@ public class Village {
 				}
 			}
 			if (nbEtalVide>0) {
-				sortie.append("Il reste ").append(nbEtalVide).append(" �tals non utilis�s dans le march�.\n");
+				sortie.append("Il reste ").append(nbEtalVide).append(" étals non utilisés dans le marché.\n");
 			}
 			return sortie.toString();
 		}
@@ -132,7 +132,7 @@ public class Village {
         if (etalLibre != -1) {
             String message = vendeur.getNom() + " cherche un endroit pour vendre " + nbProduit + " " + produit + ".";
             marche.utiliserEtal(etalLibre, vendeur, produit, nbProduit);
-            return message + " " + vendeur.getNom() + " vend des " + produit + " à l'étal n°" + etalLibre + ".";
+            return message + " " + vendeur.getNom() + " vend des " + produit + " à l'étal n°" + (etalLibre+1) + ".";
         } else {
             return vendeur.getNom() + " n'a pas pu trouver d'étal libre pour vendre des " + produit + ".";
         }

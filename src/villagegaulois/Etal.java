@@ -75,7 +75,10 @@ public class Etal {
 	}
 
 	public boolean contientProduit(String produit) {
-		return this.produit.equals(produit);
+		if (this.isEtalOccupe()){
+			return this.produit.equals(produit);
+		}
+		return false;
 	}
 
 }

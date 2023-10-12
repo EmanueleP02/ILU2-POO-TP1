@@ -34,11 +34,11 @@ public class Scenario {
 
 		System.out.println(village.rechercherVendeursProduit("fleurs"));
 		Etal etalFleur = village.rechercherEtal(bonemine);
-//		System.out.println(etalFleur.acheterProduit(10, abraracourcix));
-//		System.out.println(etalFleur.acheterProduit(15, obelix));
-//		System.out.println(etalFleur.acheterProduit(15, assurancetourix));
+		System.out.println(etalFleur.acheterProduit(10, abraracourcix));
+		System.out.println(etalFleur.acheterProduit(15, obelix));
+		System.out.println(etalFleur.acheterProduit(15, assurancetourix));
 //		System.out.println(village.partirVendeur(bonemine));
-//		System.out.println(village.afficherMarche());
+		System.out.println(village.afficherMarche());
 	}
 
 }
