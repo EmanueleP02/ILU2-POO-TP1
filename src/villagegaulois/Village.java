@@ -3,6 +3,7 @@ package villagegaulois;
 import personnages.Chef;
 import personnages.Gaulois;
 
+
 public class Village {
 	private static class Marche {
 		private Etal[] etals;
@@ -84,6 +85,11 @@ public class Village {
 		villageois = new Gaulois[nbVillageoisMaximum];
 		marche = new Marche(nbEtalsMaximum);
 	}
+    public static class VillageSansChefException extends Exception {
+        public VillageSansChefException(String message) {
+            super(message);
+        }
+    }
 
 	public String getNom() {
 		return nom;
@@ -114,6 +120,9 @@ public class Village {
 	}
 
 	public String afficherVillageois() {
+		if (chef == null) {
+	        throw new VillageSansChefException("Le village n'a pas de chef !");
+	    }
 		StringBuilder chaine = new StringBuilder();
 		if (nbVillageois < 1) {
 			chaine.append("Il n'y a encore aucun habitant au village du chef "
@@ -138,9 +147,10 @@ public class Village {
         }
     }
     public String rechercherVendeursProduit(String produit) {
-        StringBuilder vendeurs = new StringBuilder();
+        StringBuilder vendeurs = new StringBuilder("Les vendeurs qui proposent des " + produit + " sont :\n");
         for (int i = 0; i < marche.etals.length; i++) {
             if (marche.etals[i].contientProduit(produit)) {
+            	
                 vendeurs.append("- ").append(marche.etals[i].getVendeur().getNom()).append("\n");
             }
         }
@@ -149,12 +159,15 @@ public class Village {
     public Etal rechercherEtal(Gaulois vendeur) {
         return marche.trouverVendeur(vendeur);
     }
-	public void partirVendeur(Gaulois vendeur) {
-		Etal etal = marche.trouverVendeur(vendeur);
-		if (etal != null) {
-			etal.libererEtal();
-		}
-	}
+    public String partirVendeur(Gaulois vendeur) {
+        Etal etal = marche.trouverVendeur(vendeur);
+        if (etal != null) {
+            String libereEtal = etal.libererEtal();
+            return "Le vendeur " + vendeur.getNom() + " quitte son étal, " + libereEtal;
+        } else {
+            return vendeur.getNom() + " ne possède pas d'étal à quitter.";
+        }
+    }
     public String afficherMarche() {
         return marche.afficherMarche();
     }
