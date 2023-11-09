@@ -8,11 +8,6 @@ public class ScenarioCasDegrade {
     public static void main(String[] args) {
         Etal etal = new Etal();
         try {
-            System.out.println(village.afficherVillageois());
-        } catch (VillageSansChefException e) {
-            System.out.println("Exception : " + e.getMessage());
-        }
-        try {
             etal.acheterProduit(10, null);
         } catch (NullPointerException e) {
             System.out.println("Exception : " + e.getMessage());
